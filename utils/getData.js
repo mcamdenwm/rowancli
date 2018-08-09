@@ -3,7 +3,7 @@ module.exports = new Promise((rs, rj) => {
 		const ttyData = process.argv[2];
 
 		if (ttyData && ttyData.length) {
-			rs(ttyData);
+			rs(JSON.parse(ttyData));
 		} else {
 			rj('Need some data');
 		}
