@@ -9,6 +9,7 @@ Promise.all([getData, getProg])
 		const data = all[0];
 		const prog = all[1];
 
-		console.log(rs(prog)(data));
+		const result = rs(prog)(data);
+		console.log(JSON.stringify(result, null, 2));
 	})
 	.catch(console.error);
