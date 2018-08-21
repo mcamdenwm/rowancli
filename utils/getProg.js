@@ -7,19 +7,20 @@ module.exports = new Promise((rs, rj) => {
 		prog = process.argv[3];
 	}
 
-	if (!prog) {
-		return rj('Missing prog');
-	}
-
-	if (!fs.existsSync(prog)) {
-		return rj('Unable to find prog ', prog);
-	}
-
-	fs.readFile(prog, 'utf8', (e, data) => {
-		if (e) {
-			return rj('Unable to prog ', prog, e);
+	if (prog) {
+		if (!fs.existsSync(prog)) {
+			return rj('Unable to find prog ', prog);
 		}
 
-		rs(JSON.parse(data));
-	});
+		fs.readFile(prog, 'utf8', (e, data) => {
+			if (e) {
+				return rj('Unable to prog ', prog, e);
+			}
+
+			rs(JSON.parse(data));
+		});		
+	}
+	else {
+		rs(':tty');
+	}
 });

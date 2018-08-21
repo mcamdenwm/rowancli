@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@workmarket/rowanscript": "^2.1.2"
+    "@workmarket/rowanscript": "^2.1.2",
+    "jsome": "^2.5.0",
+    "ttys": "^0.0.3"
   }
 }
