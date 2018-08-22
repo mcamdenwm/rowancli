@@ -8,6 +8,9 @@ const ttys = require('ttys');
 const getData = require('./utils/getData');
 const getProg = require('./utils/getProg');
 
+const isArray = rs([':isArray']);
+const isObject = rs([':isObject']);
+
 function prompt(rli, inData) {
 	rli.question('> ', function (ttyProg) {
 		if (ttyProg === 'quit') {
@@ -36,7 +39,17 @@ Promise.all([getData, getProg])
 			const displayData = {};
 
 			Object.keys(data).forEach(k => {
-				displayData[k] = '...';
+				let val = '...';
+				
+				if (isObject(data[k])) {
+					val = '{ ... }';
+				}
+
+				if (isArray(data[k])) {
+					val = '[ ... ]';
+				}
+
+				displayData[k] = val;
 			});
 
 			jsome(displayData);
